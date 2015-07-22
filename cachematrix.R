@@ -1,34 +1,30 @@
 ## These functions do what they were asked to do.
 ## they are very obedient
 
-## Creates a funny vector that gets,sets and readies a matrix.
+## Creates a funny vector that gets,sets and readies a matrix to be returned and cached if needed.
 
 makeCacheMatrix <- function(x = matrix()) {
 
-  m <- NULL
+  inv <- NULL
   set <- function(y) {
     x <<- y
-    m <<- NULL
-  }
+    inv <<- NULL}
   get <- function() x
-  setmean <- function(mean) m <<- mean
-  getmean <- function() m
-  list(set = set, get = get,
-       setmean = setmean,
-       getmean = getmean)
-}
+  setinverted <- function(inverted) inv <<- inverted
+  getinverted <- function() inv
+  list(set = set, get = get, setinverted = setinverted, getinverted = getinverted)}
 
-## turns the matrix inside out if it hasn't been turned before.
+## turns the matrix inside out if it hasn't been turned before. 
+## Or even inverts it, chaching it if needed
+## takes a makeCacheMatrix list as an input
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-  m <- x$getmean()
-  if(!is.null(m)) {
+  inv <- x$getinverted()
+  if(!is.null(inv)) {
     message("getting cached data")
-    return(m)
-  }
+    return(inv)}
   data <- x$get()
-  m <- solve(data, ...)
-  x$setmean(m)
-  m
-}
+  inv <- solve(data, ...)
+  x$setinverted(inv)
+  inv}
