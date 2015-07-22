@@ -1,4 +1,4 @@
-## PThese functions do what they were asked to do.
+## These functions do what they were asked to do.
 ## they are very obedient
 
 ## Creates a funny vector that gets,sets and readies a matrix.
